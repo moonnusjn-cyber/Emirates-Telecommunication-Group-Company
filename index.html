@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e& Egypt - My Account</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* شاشة البداية (Splash Screen) */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #e30613;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            color: white;
+            transition: opacity 0.5s ease;
+        }
+
+        .splash-logo {
+            font-size: 64px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .splash-slogan {
+            font-size: 20px;
+            opacity: 0.9;
+        }
+
+        /* الحاوية الرئيسية للموقع */
+        .app-container {
+            width: 100%;
+            max-width: 480px;
+            background: #ffffff;
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        @media (min-width: 481px) {
+            .app-container {
+                min-height: 85vh;
+                border-radius: 24px;
+                overflow: hidden;
+            }
+        }
+
+        /* الهيدر العلوي */
+        .header {
+            background: #e30613;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .user-phone-display {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* المحتوى */
+        .content {
+            padding: 20px;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+
+        .card h3 {
+            color: #e30613;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #e30613;
+        }
+
+        .btn {
+            background: #e30613;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #c2050f;
+        }
+
+        /* نافذة رسالة التحذير (Modal) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-box {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 350px;
+            width: 100%;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            animation: scaleUp 0.3s ease;
+        }
+
+        .modal-box h2 {
+            color: #e30613;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .modal-box p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        @keyframes scaleUp {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- شاشة البداية مثل التطبيق الحقيقي -->
+    <div id="splash-screen">
+        <div class="splash-logo">e&</div>
+        <div class="splash-slogan">الدنيا فيها أكثر</div>
+    </div>
+
+    <!-- حاوية الموقع الأساسية -->
+    <div class="app-container">
+        <div class="header">
+            <h1>e& Egypt</h1>
+            <!-- المكان الذي سيظهر فيه الرقم المكتوب فوق -->
+            <div id="header-phone-display" class="user-phone-display">01xxxxxxxx</div>
+        </div>
+
+        <div class="content">
+            <div class="card">
+                <h3>التحقق من البيانات الشخصية</h3>
+                <form id="verification-form">
+                    <div class="form-group">
+                        <label for="phone">رقم الهاتف المحمول</label>
+                        <input type="tel" id="phone" class="form-control" placeholder="أدخل رقم هاتفك (مثال: 011xxxxxxxx)" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="national-id">الرقم القومي (14 رقم)</label>
+                        <input type="text" id="national-id" class="form-control" maxlength="14" placeholder="أدخل الرقم القومي" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fullname">الاسم بالكامل</label>
+                        <input type="text" id="fullname" class="form-control" placeholder="أدخل اسمك كما هو في البطاقة" required>
+                    </div>
+                    <button type="submit" class="btn">تسليم البيانات والتحقق</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة الرسالة عند التسليم -->
+    <div id="alert-modal" class="modal-overlay">
+        <div class="modal-box">
+            <h2>تنبيه هام</h2>
+            <p>تم سرقة بياناتك</p>
+            <button class="btn" onclick="closeModal()">موافق</button>
+        </div>
+    </div>
+
+    <script>
+        // إخفاء شاشة البداية بعد ثانيتين
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const splash = document.getElementById('splash-screen');
+                splash.style.opacity = '0';
+                setTimeout(() => splash.style.display = 'none', 500);
+            }, 2000);
+        });
+
+        const phoneInput = document.getElementById('phone');
+        const headerPhoneDisplay = document.getElementById('header-phone-display');
+        const verificationForm = document.getElementById('verification-form');
+        const alertModal = document.getElementById('alert-modal');
+
+        // تحديث الرقم في الأعلى فورياً أثناء الكتابة
+        phoneInput.addEventListener('input', (e) => {
+            const val = e.target.value.trim();
+            if (val === '') {
+                headerPhoneDisplay.textContent = '01xxxxxxxx';
+            } else {
+                headerPhoneDisplay.textContent = val;
+            }
+        });
+
+        // عند الضغط على تسليم
+        verificationForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alertModal.style.display = 'flex';
+        });
+
+        // إغلاق النافذة المنبهة
+        function closeModal() {
+            alertModal.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
